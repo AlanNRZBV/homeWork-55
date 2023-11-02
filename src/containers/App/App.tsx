@@ -1,30 +1,33 @@
 import '../../customStyles/burger.css';
-import meatImg from '../../assets/ingredients/meatImg.png'
-import baconImg from '../../assets/ingredients/baconImg.png'
-import cheeseImg from '../../assets/ingredients/cheeseImg.png'
-import saladImg from '../../assets/ingredients/saladImg.png'
+import meatImg from '../../assets/ingredients/meatImg.png';
+import baconImg from '../../assets/ingredients/baconImg.png';
+import cheeseImg from '../../assets/ingredients/cheeseImg.png';
+import saladImg from '../../assets/ingredients/saladImg.png';
 import { useState } from 'react';
 import Ingredient from '../../components/Ingredient/Ingredient.tsx';
 import { IIngredient, ITopping } from '../../types';
 
 function App() {
-
   const [toppings, setToppings] = useState<ITopping[]>([
-    {name: 'Meat', count: 0},
-    {name: 'Cheese', count: 0},
-    {name: 'Bacon', count: 0},
-    {name: 'Salad', count: 0},
-  ])
+    { name: 'Meat', count: 0 },
+    { name: 'Cheese', count: 0 },
+    { name: 'Bacon', count: 0 },
+    { name: 'Salad', count: 0 },
+  ]);
 
   const Ingredients: IIngredient[] = [
-    {name: 'Meat', price: 80, image:meatImg },
-    {name: 'Bacon', price: 60, image:baconImg },
-    {name: 'Cheese', price: 50, image:cheeseImg },
-    {name: 'Salad', price: 10, image:saladImg}
-  ]
+    { name: 'Meat', price: 80, image: meatImg },
+    { name: 'Bacon', price: 60, image: baconImg },
+    { name: 'Cheese', price: 50, image: cheeseImg },
+    { name: 'Salad', price: 10, image: saladImg },
+  ];
 
-  const changeCount = (type: string, behavior: boolean) =>{
-    const updatedToppings = toppings.map(topping => {
+  const changeCount = (type: string, behavior: boolean, wipe: boolean) => {
+    const toppingsCopy = [...toppings];
+    const updatedToppings = toppingsCopy.map((topping) => {
+      if ( wipe && topping.name === type){
+        return {...topping, count: 0}
+      }
       if (topping.name === type) {
         if (behavior && topping.count < 10) {
           return { ...topping, count: topping.count + 1 };
@@ -34,16 +37,21 @@ function App() {
       }
       return topping;
     });
-    console.log(updatedToppings)
+    console.log(updatedToppings);
     setToppings(updatedToppings);
-  }
+  };
+
+  const sendCount = (name: string) => {
+    const topping = toppings.find((item) => item.name === name);
+    return topping ? topping.count : 0;
+  };
 
   return (
     <div className="container">
       <div className="row mt-5">
         <div className="col border border-1 me-2">
-          {Ingredients.map((ing, index)=>(
-            <Ingredient key={index} name={ing.name} price={ing.price} image={ing.image} onChangeCount={changeCount}/>
+          {Ingredients.map((ing, index) => (
+            <Ingredient key={index} name={ing.name} price={ing.price} image={ing.image} onChangeCount={changeCount} sendCount={sendCount}/>
           ))}
         </div>
         <div className="col border border-1 ms-2">
