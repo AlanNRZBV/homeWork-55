@@ -1,7 +1,6 @@
-interface IIngredient  {
-  name: string,
-  price: number,
-  image: string
+interface IIngredient {
+  name: string;
+  image: string;
   onChangeCount?: (type: string, behavior: boolean, wipe: boolean) => void;
   sendCount?: (name: string) => number;
 }
@@ -11,12 +10,17 @@ export interface ICounter {
 }
 
 interface ITopping {
-  name: string,
-  count: number
+  name: string;
+  count: number;
+  price: number;
 }
 
 export interface IButton {
   innerText?: string;
   onClick: () => void;
-  style?: string
+  style?: string;
+}
+
+export interface IBill {
+  total: number
 }

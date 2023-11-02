@@ -3,7 +3,7 @@ import Counter from '../Counter/Counter.tsx';
 import { IIngredient } from '../../types';
 import Button from '../Button/Button.tsx';
 
-const Ingredient: FC<IIngredient> = ({ name, price, image, onChangeCount, sendCount }) => {
+const Ingredient: FC<IIngredient> = ({ name, image, onChangeCount, sendCount }) => {
   const imgStyle = {
     width: '100px',
     height: '100px',
