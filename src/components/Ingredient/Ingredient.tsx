@@ -17,7 +17,7 @@ const Ingredient: FC<IIngredient> = ({ name, price, image, onChangeCount, sendCo
         <Button innerText="Add" onClick={() => onChangeCount?.(name, true, false)} />
         <Counter count={sendCount?.(name)} />
         <Button innerText="Remove" onClick={() => onChangeCount?.(name, false, false)} />
-        <Button style="btn-close" onClick={() => onChangeCount?.(name, false, true)}/>
+        <Button style="ms-2 btn-close" onClick={() => onChangeCount?.(name, false, true)}/>
       </div>
     </div>
   );

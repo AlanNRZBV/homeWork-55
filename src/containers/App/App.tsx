@@ -5,6 +5,7 @@ import cheeseImg from '../../assets/ingredients/cheeseImg.png';
 import saladImg from '../../assets/ingredients/saladImg.png';
 import { useState } from 'react';
 import Ingredient from '../../components/Ingredient/Ingredient.tsx';
+import Topping from '../../components/Topping/Topping.tsx';
 import { IIngredient, ITopping } from '../../types';
 
 function App() {
@@ -22,10 +23,10 @@ function App() {
     { name: 'Salad', price: 10, image: saladImg },
   ];
 
-  const changeCount = (type: string, behavior: boolean, wipe: boolean) => {
+  const changeCount = (type: string, behavior: boolean, reset: boolean) => {
     const toppingsCopy = [...toppings];
     const updatedToppings = toppingsCopy.map((topping) => {
-      if ( wipe && topping.name === type){
+      if ( reset && topping.name === type){
         return {...topping, count: 0}
       }
       if (topping.name === type) {
@@ -60,7 +61,9 @@ function App() {
               <div className="Seeds1"></div>
               <div className="Seeds2"></div>
             </div>
-            {/*<Topping name={toppings[index].name} count={toppings[index].count}/>*/}
+            {toppings.map((topping, index)=>(
+              <Topping key={index} name={topping.name} count={topping.count}/>
+            ))}
             <div className="BreadBottom"></div>
           </div>
         </div>
