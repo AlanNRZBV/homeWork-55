@@ -19,9 +19,9 @@ function App() {
 
   const [bill, setBill] = useState<IBill>({ total: 0 });
 
-  useEffect(()=>{
-    calculateTotal()
-  }, [toppings])
+  useEffect(() => {
+    calculateTotal();
+  }, [toppings]);
 
   const Ingredients: IIngredient[] = [
     { name: 'Meat', image: meatImg },
@@ -45,7 +45,6 @@ function App() {
       }
       return topping;
     });
-    console.log(updatedToppings);
     setToppings(updatedToppings);
   };
 
@@ -58,17 +57,17 @@ function App() {
     let total = 0;
     for (let i = 0; i < toppings.length; i++) {
       if (toppings[i].count > 0) {
-        total+= toppings[i].count * toppings[i].price;
+        total += toppings[i].count * toppings[i].price;
       }
     }
-    setBill({total})
+    setBill({ total });
   };
-
 
   return (
     <div className="container">
       <div className="row mt-5">
-        <div className="col border border-1 me-2">
+        <div className="col border border-1 me-2 text-center py-3">
+          <span>Customize your burger</span>
           {Ingredients.map((ing, index) => (
             <Ingredient
               key={index}

@@ -1,13 +1,11 @@
 import React, { FC } from 'react';
 import { IBill } from '../../types';
 
-
-const Bill: FC<IBill> = ({total}) => {
+const Bill: FC<IBill> = ({ total }) => {
   return (
     <div className="d-flex align-item-center justify-content-center">
-      <span>{total}</span>
+      <span className="border border-1 rounded-1 px-3 py-1 mt-3">Price: {total}</span>
     </div>
-
   );
 };
 

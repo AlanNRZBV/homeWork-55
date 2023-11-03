@@ -1,8 +1,7 @@
-import {FC} from 'react';
+import { FC } from 'react';
 import { ITopping } from '../../types';
 
-const Topping: FC<ITopping> = ({name, count}) => {
-
+const Topping: FC<ITopping> = ({ name, count }) => {
   return (
     <>
       {Array.from({ length: count }, (_, index) => (
