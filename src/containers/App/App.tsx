@@ -54,7 +54,7 @@ function App() {
   };
 
   const calculateTotal = () => {
-    let total = 0;
+    let total = 30;
     for (let i = 0; i < toppings.length; i++) {
       if (toppings[i].count > 0) {
         total += toppings[i].count * toppings[i].price;
